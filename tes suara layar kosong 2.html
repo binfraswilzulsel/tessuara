@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suara Saat Layar Diketuk</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Elemen audio untuk suara -->
+    <audio id="click-sound" src="tap_sound.mp3" preload="auto"></audio>
+
+    <script>
+        let isTouch = false;  // Untuk mendeteksi apakah suara sudah diputar
+        let isScrolling = false;  // Menandai apakah kita sedang menggulir layar
+
+        // Fungsi untuk memutar suara saat layar diketuk
+        document.addEventListener("touchstart", function(event) {
+            if (!isTouch && !isScrolling) {  // Cek jika belum diputar dan tidak sedang scroll
+                document.getElementById("click-sound").play();
+                isTouch = true;  // Tandai bahwa suara sudah diputar
+                setTimeout(function() {
+                    isTouch = false;  // Reset isTouch setelah 300ms
+                }, 300);  // Timeout 300ms
+            }
+        });
+
+        // Fungsi untuk mendeteksi scrolling
+        document.addEventListener("touchmove", function(event) {
+            isScrolling = true;  // Jika ada scroll, set isScrolling true
+        });
+
+        // Reset isScrolling setelah 300ms tidak ada gerakan
+        document.addEventListener("touchend", function(event) {
+            setTimeout(function() {
+                isScrolling = false;  // Reset isScrolling setelah 300ms
+            }, 300); 
+        });
+
+        // Menangani klik di desktop
+        document.addEventListener("click", function(event) {
+            if (!isTouch) {  // Cek apakah suara belum diputar
+                document.getElementById("click-sound").play();
+                isTouch = true;
+                setTimeout(function() {
+                    isTouch = false;
+                }, 300);  // Timeout 300ms
+            }
+        });
+    </script>
+
+</body>
+</html>
