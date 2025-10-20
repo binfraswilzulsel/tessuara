@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kartu dengan Suara</title>
+    <style>
+        .card {
+            padding: 20px;
+            background-color: #f7f9fc;
+            border-radius: 20px;
+            cursor: pointer;
+            max-width: 300px;
+            margin: 20px auto;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        
+        .card:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Kartu 1 -->
+    <div class="card" id="card1">
+        <h2>Kartu 1</h2>
+    </div>
+    <!-- Kartu 2 -->
+    <div class="card" id="card2">
+        <h2>Kartu 2</h2>
+    </div>
+    <!-- Kartu 3 -->
+    <div class="card" id="card3">
+        <h2>Kartu 3</h2>
+    </div>
+
+    <!-- Elemen audio untuk suara kartu -->
+    <audio id="sound1" src="tap_sound.mp3" preload="auto"></audio>
+    <audio id="sound2" src="tap_sound.mp3" preload="auto"></audio>
+    <audio id="sound3" src="tap_sound.mp3" preload="auto"></audio>
+
+    <script>
+        // Menangani event klik pada Kartu 1
+        document.getElementById("card1").addEventListener("click", function() {
+            document.getElementById("sound1").play();
+        });
+
+        // Menangani event klik pada Kartu 2
+        document.getElementById("card2").addEventListener("click", function() {
+            document.getElementById("sound2").play();
+        });
+
+        // Menangani event klik pada Kartu 3
+        document.getElementById("card3").addEventListener("click", function() {
+            document.getElementById("sound3").play();
+        });
+    </script>
+
+</body>
+</html>
